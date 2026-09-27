@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of pria & wanita</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #fcfcfc;
+            color: #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* Cover Section */
+        #cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #ffffff;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        #cover.hide {
+            transform: translateY(-100%);
+        }
+
+        .ribbon img {
+            height: 200px;
+            width: 300px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .line img {
+            height: 80px;
+            width: 230px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cover-title {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .cover-date {
+            font-size: 14px;
+            color: #7ab2d3;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .couple-illustration {
+            width: 220px;
+            height: auto;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .cover-names {
+            font-family: 'Sacramento', cursive;
+            font-size: 42px;
+            color: #4a88b5;
+            margin: 15px 0;
+        }
+
+        .btn-open {
+            background-color: #dbeafe;
+            color: #4a88b5;
+            border: 1px solid #93c5fd;
+            padding: 10px 40px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.2s;
+        }
+
+        .btn-open:hover {
+            background-color: #bfdbfe;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .section-title-top {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .main-couple-name {
+            font-family: 'Sacramento', cursive;
+            font-size: 45px;
+            color: #4a88b5;
+            margin-bottom: 25px;
+        }
+
+        /* Quran Quote */
+        .quote-box {
+            background-color: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #705268;
+            margin-bottom: 30px;
+        }
+
+        /* Audio Player */
+        .audio-player {
+            margin-bottom: 30px;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            color: #7ab2d3;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .play-btn {
+            background: #7ab2d3;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .audio-text {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .string-divider {
+            margin: 20px 0;
+            color: #7ab2d3;
+        }
+
+        /* Bride & Groom Profile */
+        .profile-section h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 35px;
+            color: #4a88b5;
+            margin-bottom: 20px;
+        }
+
+        .profile-card {
+            margin-bottom: 25px;
+        }
+
+        .photo-frame {
+            width: 130px;
+            height: 150px;
+            border: 5px solid #d4bda8;
+            background: #fff;
+            padding: 5px;
+            margin: 0 auto 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person-name {
+            font-family: 'Sacramento', cursive;
+            font-size: 32px;
+            color: #e879f9;
+        }
+
+        .person-fullname {
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .person-parents {
+            font-size: 12px;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        .ampersand {
+            font-size: 28px;
+            color: #7ab2d3;
+            margin: 15px 0;
+        }
+
+        /* Save The Date */
+        .save-date-section {
+            background: #fff;
+            padding: 20px 0;
+        }
+
+        .save-date-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 38px;
+            color: #4a88b5;
+            margin-bottom: 15px;
+        }
+
+        .calendar-strip {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .calendar-day {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background: #fafafa;
+        }
+
+        .calendar-day.active {
+            background: #fdf2f8;
+            border-color: #fbcfe8;
+            color: #db2777;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .event-box {
+            margin-bottom: 25px;
+        }
+
+        .event-box h3 {
+            font-family: 'Sacramento', cursive;
+            font-size: 30px;
+            color: #db2777;
+            margin-bottom: 8px;
+        }
+
+        .event-details {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .btn-location {
+            display: inline-block;
+            background-color: #dbeafe;
+            color: #4a88b5;
+            border: 1px solid #93c5fd;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        /* Countdown */
+        .countdown-box {
+            background: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            padding: 15px;
+            border-radius: 25px;
+            width: 85%;
+            margin: 20px auto;
+            color: #db2777;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .countdown-timer {
+            font-size: 18px;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Love Story */
+        .love-story-section {
+            padding: 20px 10px;
+        }
+
+        .love-story-section h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 38px;
+            color: #4a88b5;
+            margin-bottom: 20px;
+        }
+
+        .story-item {
+            text-align: left;
+            padding-left: 20px;
+            border-left: 2px solid #fbcfe8;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .story-item h4 {
+            font-size: 14px;
+            color: #db2777;
+            margin-bottom: 5px;
+        }
+
+        .story-item p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Wedding Gift */
+        .gift-section h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 38px;
+            color: #4a88b5;
+            margin-bottom: 10px;
+        }
+
+        .gift-desc {
+            font-size: 12px;
+            color: #666;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .bank-card {
+            background: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            padding: 15px;
+            border-radius: 15px;
+            width: 85%;
+            margin: 0 auto 15px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .bank-card b {
+            color: #db2777;
+        }
+
+        /* Wishes Form */
+        .wishes-section {
+            padding: 20px;
+            background: #fff;
+            text-align: left;
+        }
+
+        .wishes-box {
+            background: #fdf2f8;
+            border: 1px solid #fbcfe8;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .wishes-box h3 {
+            font-family: 'Sacramento', cursive;
+            font-size: 30px;
+            color: #db2777;
+            margin-bottom: 5px;
+        }
+
+        .wishes-box p {
+            font-size: 11px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 12px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-submit {
+            background: #db2777;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .guest-wishes-list {
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            text-align: left;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .guest-wish-item {
+            font-size: 11px;
+            border-bottom: 1px solid #f5f5f5;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+        }
+
+        .guest-wish-item b {
+            color: #4a88b5;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 30px 20px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .footer h2 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .footer .names {
+            font-family: 'Sacramento', cursive;
+            font-size: 32px;
+            color: #4a88b5;
+            margin-bottom: 15px;
+        }
+
+        .footer-credit {
+            font-size: 10px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- COVER / HALAMAN PEMBUKA -->
+        <div id="cover">
+            <div class="ribbon">
+              <img src=img/pita.jpg alt="ribbon Illustration">
+            </div>
+            <div class="cover-title">THESE COUPLE ARE</div>
+            <div class="cover-date">06 . 09 . 2027</div>
+            <!-- Ganti src dengan foto ilustrasi pengantin -->
+            <img src=img/couple.png alt="Couple Illustration" class="couple-illustration">
+            <div class="cover-names">pria & wanita</div>
+            <button class="btn-open" onclick="openInvitation()">OPEN</button>
+            <div class="line">
+              <img src=img/garis.jpg alt="line Illustration">
+            </div>
+        </div>
+
+        <!-- KONTEN UTAMA UNDANGAN -->
+        <div class="main-content">
+            <div class="section-title-top">The Wedding of</div>
+            <div class="main-couple-name">pria & wanita</div>
+
+            <!-- Ayat Suci / Quote -->
+            <div class="quote-box">
+                "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang." <br><strong>Qs. Ar-Rum: 21</strong>
+            </div>
+
+            <!-- Audio Player -->
+            <div class="audio-player">
+                <div class="audio-controls">
+                    <i class="fa-solid fa-backward-step"></i>
+                    <div class="play-btn" id="playAudioBtn" onclick="toggleMusic()"><i class="fa-solid fa-play" id="playIcon"></i></div>
+                    <i class="fa-solid fa-forward-step"></i>
+                </div>
+                <div class="audio-text">Click to play our song!</div>
+            </div>
+
+            <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
+
+            <!-- Bride & Groom Section -->
+            <div class="profile-section">
+                <h2>Bride & Groom</h2>
+                
+                <div class="profile-card">
+                    <div class="photo-frame">
+                        <!-- Ganti src dengan foto pria -->
+                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria">
+                    </div>
+                    <div class="person-name">pria</div>
+                    <div class="person-fullname">pria </div>
+                    <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
+                </div>
+
+                <div class="ampersand">&</div>
+
+                <div class="profile-card">
+                    <div class="photo-frame">
+                        <!-- Ganti src dengan foto wanita -->
+                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita">
+                    </div>
+                    <div class="person-name">wanita</div>
+                    <div class="person-fullname">wanita </div>
+                    <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
+                </div>
+            </div>
+
+            <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
+
+            <!-- Save The Date Section -->
+            <div class="save-date-section">
+                <div class="save-date-title">Save the Date</div>
+                
+                <div class="calendar-strip">
+                    <div class="calendar-day">Saturday<br><strong>5</strong></div>
+                    <div class="calendar-day active">Sunday<br><strong>6</strong><br><span style="font-size:9px;">D-Day !!</span></div>
+                    <div class="calendar-day">Monday<br><strong>7</strong></div>
+                </div>
+
+                <div class="event-box">
+                    <h3>Akad Nikah</h3>
+                    <div class="event-details">
+                        Minggu, 6 September 2027<br>
+                        Pukul : 08.30 - 10.00 WIB<br>
+                        Tempat : Kutamara<br>
+                        Jl.
+                    </div>
+                </div>
+
+                <div class="event-box">
+                    <h3>Resepsi</h3>
+                    <div class="event-details">
+                        Minggu, 6 September 2027<br>
+                        Pukul : 10.00 - 13.00 WIB<br>
+                        Tempat : Kutamara<br>
+                        Jl.
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" class="btn-location">Lihat Lokasi Disini</a>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div class="countdown-box">
+                    <div>Menuju Hari Bahagia</div>
+                    <div class="countdown-timer" id="countdown">14:04:28:02</div>
+                </div>
+            </div>
+
+            <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
+
+            <!-- Love Story Section -->
+            <div class="love-story-section">
+                <h2>Love Story</h2>
+                
+                <div class="story-item">
+                    <h4>Awal Pertama</h4>
+                    <p>Sebuah pertemuan sederhana menjadi awal dari cerita yang tak pernah kami sangka.</p>
+                </div>
+
+                <div class="story-item">
+                    <h4>Menjadi Kita</h4>
+                    <p>Waktu membawa kami semakin dekat, hingga akhirnya kami menyadari bahwa mungkin, inilah cara Tuhan mempertemukan dua hati yang tepat.</p>
+                </div>
+
+                <div class="story-item">
+                    <h4>Selamanya</h4>
+                    <p>Dengan penuh syukur, kami memilih untuk melangkah bersama, menulis cerita baru dalam satu ikatan pernikahan.</p>
+                </div>
+            </div>
+
+            <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
+
+            <!-- Wedding Gift Section -->
+            <div class="gift-section">
+                <h2>Wedding Gift</h2>
+                <div class="gift-desc">
+                    Kehadiran dan doa restu dari orang-orang terkasih adalah hadiah terindah bagi kami. Dan jika ingin memberikan tanda kasih, dapat melalui:
+                </div>
+
+                <div class="bank-card">
+                    <b>BCA</b><br>
+                    xxxxxxxxxx<br>
+                    a.n pria 
+                </div>
+
+                <div class="bank-card">
+                    <b>Mandiri</b><br>
+                    xxxxxxxxxx<br>
+                    a.n wanita 
+                </div>
+            </div>
+
+            <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
+
+            <!-- Wishes & RSVP Section -->
+            <div class="wishes-section">
+                <div class="wishes-box">
+                    <h3><i class="fa-solid fa-heart" style="font-size: 16px;"></i> Kirim Ucapan & Doa</h3>
+                    <p>Drop your sweetest wishes for us!</p>
+                    
+                    <form id="wishesForm">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" class="form-control" id="senderName" placeholder="Tulis nama kamu di sini..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ucapan & Doa</label>
+                            <textarea class="form-control" id="senderWish" rows="3" placeholder="Tulis ucapan kamu di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+
+                    <div class="guest-wishes-list" id="wishesList">
+                        <div class="guest-wish-item">
+                            <b>Beby Clarita</b><br>
+                            Barakallah fialmik, selamat ya pria & wanita semoga sakinah mawaddah warahmah yaa.
+                        </div>
+                        <div class="guest-wish-item">
+                            <b>Rian</b><br>
+                            Congrats ya! Semoga bahagia & langgeng sampai tua!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="footer">
+                <h2>See You At Our Wedding Day!</h2>
+                <div style="font-size: 13px; color: #666; margin-bottom: 5px;">With Love</div>
+                <div class="names">pria & wanita</div>
+                <div class="footer-credit">Invitation by BimaTech</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Audio Background (Ganti link file musik jika ada) -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Fungsi Membuka Undangan & Memutar Musik
+        const bgMusic = document.getElementById('bgMusic');
+        const playIcon = document.getElementById('playIcon');
+        let isPlaying = false;
+
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            cover.classList.add('hide');
+            
+            // Putar musik otomatis saat dibuka
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            }).catch(e => {
+                console.log("Autoplay blocked:", e);
+            });
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+                isPlaying = true;
+            }
+        }
+
+        // Countdown Timer menuju 6 September 2027
+        const weddingDate = new Date("September 6, 2027 08:30:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "00:00:00:00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                String(days).padStart(2, '0') + ":" + 
+                String(hours).padStart(2, '0') + ":" + 
+                String(minutes).padStart(2, '0') + ":" + 
+                String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Form Submit Ucapan
+        const wishesForm = document.getElementById('wishesForm');
+        const wishesList = document.getElementById('wishesList');
+
+        wishesForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('senderName').value;
+            const wish = document.getElementById('senderWish').value;
+
+            if(name && wish) {
+                const newItem = document.createElement('div');
+                newItem.classList.add('guest-wish-item');
+                newItem.innerHTML = `<b>${escapeHtml(name)}</b><br>${escapeHtml(wish)}`;
+                
+                wishesList.prepend(newItem);
+                
+                document.getElementById('senderName').value = '';
+                document.getElementById('senderWish').value = '';
+                alert('Ucapan & doa berhasil dikirim!');
+            }
+        });
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>
