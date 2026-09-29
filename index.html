@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Wedding of pria & wanita</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         * {
             margin: 0;
@@ -24,6 +24,8 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow: hidden;
+            /* Mencegah scroll ganda saat cover aktif */
         }
 
         .container {
@@ -32,35 +34,116 @@
             background: #ffffff;
             min-height: 100vh;
             position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
 
         /* Cover Section */
         #cover {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background: #ffffff;
+            background-image: url('img/bg.jpg');
+            background-size: cover;
+            background-position: center;
             z-index: 100;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
             transition: transform 0.8s ease-in-out;
+            overflow-x: hidden;
         }
 
+        /* Kelas untuk mentrigger transisi penutupan cover */
         #cover.hide {
             transform: translateY(-100%);
         }
 
+        /* Styling Dasar untuk Gambar Hati */
+        #cover img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        #cover #hati1 {
+            top: 25%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        #cover #hati2 {
+            top: 35%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        #cover #hati3 {
+            bottom: 30%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        #cover img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        #cover #coretan1 {
+            top: 25%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        #cover #coretan2 {
+            bottom: 25%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes floatCoretan {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(5deg) scale(1.05);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(5px) rotate(-5deg) scale(0.95);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                transform: translateY(-10px) scale(1.08);
+            }
+        }
+
         .ribbon img {
-            height: 200px;
-            width: 300px;
+            height: 80px;
+            width: 100%;
             margin: 0;
             padding: 0;
         }
@@ -73,12 +156,43 @@
         }
 
         .cover-title {
-            font-size: 16px;
-            color: #666;
+            font-family: 'Sacramento', cursive;
+            font-size: 22px;
+            color: #7ab2d3;
             margin-bottom: 5px;
+            font-weight: 600;
+            justify-content: center;
+            gap: 6px;
+
+        }
+
+        .cover-title span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(15px) rotate(-15deg) scale(0.7);
+            animation: revealLetter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+
+        @keyframes revealLetter {
+            0% {
+                opacity: 0;
+                transform: translateY(15px) rotate(-15deg) scale(0.7);
+            }
+
+            70% {
+                opacity: 1;
+                transform: translateY(-2px) rotate(5deg) scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
         }
 
         .cover-date {
+            font-family: 'Sacramento', cursive;
             font-size: 14px;
             color: #7ab2d3;
             margin-bottom: 20px;
@@ -103,14 +217,16 @@
             background-color: #dbeafe;
             color: #4a88b5;
             border: 1px solid #93c5fd;
-            padding: 10px 40px;
             border-radius: 20px;
             font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.2s;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            padding: 10px 25px;
+            margin-top: 20px;
         }
 
         .btn-open:hover {
@@ -121,6 +237,93 @@
         .main-content {
             padding: 40px 20px;
             text-align: center;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .content h2 {
+            font-family: 'Sacramento', cursive;
+            font-size: 38px;
+            color: #4a88b5;
+            margin-bottom: 20px;
+        }
+
+        .content span.pria, .content span.wanita {
+            font-family: 'Sacramento', cursive;
+            font-size: 4.5rem;
+            color: #4a88b5;
+            display: block;
+            font-weight: 600;
+        }
+
+        .content .pria {
+            margin-right: 25%;
+        }
+
+        .content .wanita {
+            margin-left: 25%;
+            margin-top: -20%;
+        }
+
+        .content #tanganImg {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin-top: -8%;
+            z-index: 0;
+            opacity: 1;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .content img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .content #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .content #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .content #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .content img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .content #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .content #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
         }
 
         .section-title-top {
@@ -193,6 +396,60 @@
             margin-bottom: 20px;
         }
 
+        .profile-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .profile-section img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .profile-section #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .profile-section #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .profile-section #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .profile-section img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .profile-section #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .profile-section #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
         .profile-card {
             margin-bottom: 25px;
         }
@@ -204,7 +461,12 @@
             background: #fff;
             padding: 5px;
             margin: 0 auto 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: rotate(3deg);
+        }
+
+        .photo-frame#wanita {
+            transform: rotate(-3deg);
         }
 
         .photo-frame img {
@@ -213,10 +475,26 @@
             object-fit: cover;
         }
 
+        .photo-frame#pria {
+            transform: rotate(3deg);
+        }
+
+        .photo-frame#wanita {
+            transform: rotate(-3deg);
+        }
+
         .person-name {
+            position: relative;
             font-family: 'Sacramento', cursive;
             font-size: 32px;
             color: #e879f9;
+            font-weight: 600;
+            left: 20%;
+            margin-top: -15%;
+        }
+
+        .person-name#wanita {
+            left: -22%;
         }
 
         .person-fullname {
@@ -240,8 +518,59 @@
 
         /* Save The Date */
         .save-date-section {
+            position: relative;
+            z-index: 1;
             background: #fff;
             padding: 20px 0;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .save-date-section img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .save-date-section #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .save-date-section #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .save-date-section #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .save-date-section img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .save-date-section #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .save-date-section #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
         }
 
         .save-date-title {
@@ -254,24 +583,63 @@
         .calendar-strip {
             display: flex;
             justify-content: center;
-            gap: 10px;
             margin-bottom: 25px;
-            font-size: 14px;
+            font-size: 25px;
+            color: black;
+            transform: rotate(-10deg);
         }
 
         .calendar-day {
             padding: 10px 15px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #4a88b5;
             background: #fafafa;
         }
 
         .calendar-day.active {
             background: #fdf2f8;
-            border-color: #fbcfe8;
+            border-color: #4a88b5;
             color: #db2777;
             font-weight: bold;
             position: relative;
+        }
+
+      
+        .calendar-day hr.calendar-divider {
+            border: none;
+            border-top: 1px solid #4a88b5; /* Sesuaikan warna garis Anda */
+            width: auto;                /* Biarkan otomatis menyesuaikan */
+            margin-top: 8px;
+            margin-bottom: 8px;
+    
+            /* Tarik garis ke kiri dan ke kanan menembus padding kotak */
+            margin-left: -20px;   /* Sesuaikan besar nilai ini dengan padding kiri .calendar-day */
+            margin-right: -20px;  /* Sesuaikan besar nilai ini dengan padding kanan .calendar-day */
+        }
+
+      
+      
+        .calendar-day.active img[id^="bgh"] {
+            position: absolute;
+            width: 130%;
+            height: 25vh;
+            z-index: 2;
+            animation: floatbgh 3s ease-in-out infinite alternate;
+        }
+
+        .calendar-day.active #bgh {
+            top: -23%;
+            left: -15%;
+            animation-delay: 0s;
+        }
+
+        @keyframes floatbgh {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
         }
 
         .event-box {
@@ -307,12 +675,12 @@
         /* Countdown */
         .countdown-box {
             background: #fdf2f8;
-            border: 1px solid #fbcfe8;
+            border: 3px dashed #fbcfe8;
             padding: 15px;
             border-radius: 25px;
             width: 85%;
             margin: 20px auto;
-            color: #db2777;
+            color: #4a88b5;
             font-weight: bold;
             font-size: 14px;
         }
@@ -325,7 +693,58 @@
 
         /* Love Story */
         .love-story-section {
+            position: relative;
+            z-index: 1;
             padding: 20px 10px;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .love-story-section img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .love-story-section #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .love-story-section #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .love-story-section #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .love-story-section img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .love-story-section #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .love-story-section #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
         }
 
         .love-story-section h2 {
@@ -351,7 +770,7 @@
 
         .story-item p {
             font-size: 12px;
-            color: #666;
+            color: #4a88b5;
             line-height: 1.5;
         }
 
@@ -361,6 +780,60 @@
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 10px;
+        }
+
+        .gift-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .gift-section img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .gift-section #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .gift-section #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .gift-section #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .gift-section img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .gift-section #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .gift-section #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
         }
 
         .gift-desc {
@@ -386,56 +859,169 @@
             color: #db2777;
         }
 
-        /* Wishes Form */
-        .wishes-section {
+        .rsvp-section {
+            position: relative;
+            z-index: 1;
             padding: 20px;
             background: #fff;
             text-align: left;
         }
 
-        .wishes-box {
+        /* Styling Dasar untuk Gambar Hati */
+        .rsvp-section img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .rsvp-section #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .rsvp-section #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .rsvp-section #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .rsvp-section img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .rsvp-section #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .rsvp-section #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
+        }
+
+        .section-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 38px;
+            color: #db2777;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .rsvp-prompt {
+            font-size: 11px;
+            color: #777;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        #wishesForm {
             background: #fdf2f8;
             border: 1px solid #fbcfe8;
             padding: 20px;
             border-radius: 15px;
-            text-align: center;
-        }
-
-        .wishes-box h3 {
-            font-family: 'Sacramento', cursive;
-            font-size: 30px;
-            color: #db2777;
-            margin-bottom: 5px;
-        }
-
-        .wishes-box p {
-            font-size: 11px;
-            color: #777;
-            margin-bottom: 15px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
             text-align: left;
         }
 
-        .form-group label {
+        .form-label {
             font-size: 12px;
             color: #555;
             display: block;
             margin-bottom: 4px;
+            margin-top: 10px;
         }
 
-        .form-control {
+        .form-label:first-of-type {
+            margin-top: 0;
+        }
+
+        #wishesForm input[type="text"],
+        #wishesForm input[type="number"],
+        #wishesForm select,
+        #wishesForm textarea {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 12px;
             font-family: 'Quicksand', sans-serif;
+            background: #fff;
+            color: #555;
         }
 
-        .btn-submit {
+        .sticker-selection {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .sticker-selection label {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .sticker-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .sticker-item {
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: border-color 0.2s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .sticker-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .sticker-item.selected {
+            border-color: #f6d122;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .wish-sticker {
+            width: 40px !important;
+            height: 40px !important;
+            opacity: 1 !important;
+            display: block !important;
+            object-fit: contain;
+            margin-left: 10px;
+        }
+
+        #btn-rsvp {
             background: #db2777;
             color: white;
             border: none;
@@ -444,36 +1030,172 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 5px;
+            margin-top: 15px;
+            font-family: 'Quicksand', sans-serif;
         }
 
-        .guest-wishes-list {
+        #loading {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin: 10px 0;
+            display: none;
+        }
+
+        h9 {
+            font-size: 13px;
+            font-weight: bold;
+            color: #4a88b5;
+            display: block;
             margin-top: 20px;
-            max-height: 150px;
-            overflow-y: auto;
-            text-align: left;
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #eee;
-        }
-
-        .guest-wish-item {
-            font-size: 11px;
-            border-bottom: 1px solid #f5f5f5;
-            padding-bottom: 8px;
             margin-bottom: 8px;
         }
 
-        .guest-wish-item b {
+        .wishesList-container {
+            background-color: transparent;
+            font-size: 13px;
+            width: 100%;
+            margin: 0 auto;
+            overflow-y: visible;
+            padding: 0;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        #wishesList {
+            font-size: 0.9em;
+            text-align: left;
+            display: block;
+        }
+
+        .wish-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+            gap: 15px;
+            word-wrap: break-word;
+        }
+
+        .attendance-status {
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .status-hadir {
+            color: green;
+        }
+
+        .status-tidak-hadir {
+            color: red;
+        }
+
+        .wish-initials {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #4a88b5;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2em;
+            text-transform: uppercase;
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        .pagination-btn {
+            background: #dbeafe;
             color: #4a88b5;
+            border: 1px solid #93c5fd;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .pagination-btn:disabled {
+            background: #f3f4f6;
+            color: #9ca3af;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            color: #666;
         }
 
         /* Footer */
         .footer {
+            position: relative;
+            z-index: 1;
             padding: 30px 20px;
             text-align: center;
             background: #fff;
+        }
+
+        /* Styling Dasar untuk Gambar Hati */
+        .footer img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        .footer #hati1 {
+            top: 5%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .footer #hati2 {
+            top: 45%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .footer #hati3 {
+            bottom: -10%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        /* Styling Dasar Coretan */
+        .footer img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        .footer #coretan1 {
+            top: 5%;
+            right: -5%;
+            animation-delay: 0s;
+        }
+
+        .footer #coretan2 {
+            bottom: 5%;
+            left: 5%;
+            animation-delay: 2s;
         }
 
         .footer h2 {
@@ -495,108 +1217,148 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <!-- COVER / HALAMAN PEMBUKA -->
         <div id="cover">
             <div class="ribbon">
-              <img src=img/pita.jpg alt="ribbon Illustration">
+                <img src="img/pita.jpg" alt="ribbon Illustration">
             </div>
-            <div class="cover-title">THESE COUPLE ARE</div>
-            <div class="cover-date">06 . 09 . 2027</div>
-            <!-- Ganti src dengan foto ilustrasi pengantin -->
-            <img src=img/couple.png alt="Couple Illustration" class="couple-illustration">
+            <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+            <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+            <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+            <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+            <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
+            <div class="cover-title" id="animatedTitle">THESE COUPLE ARE <br> GETTING MARRIED</div>
+            <div class="cover-date">01 . 11 . 2026</div>
+            <img src="img/couple.png" alt="Couple Illustration" class="couple-illustration">
             <div class="cover-names">pria & wanita</div>
             <button class="btn-open" onclick="openInvitation()">OPEN</button>
             <div class="line">
-              <img src=img/garis.jpg alt="line Illustration">
+                <img src="img/garis.jpg" alt="line Illustration">
             </div>
         </div>
 
-        <!-- KONTEN UTAMA UNDANGAN -->
         <div class="main-content">
-            <div class="section-title-top">The Wedding of</div>
-            <div class="main-couple-name">pria & wanita</div>
+            <div class="content">
+                <h2>the wedding of
+                <span class="pria">pria</span>
+                <span class="wanita">wanita</span>
+                </h2>
 
-            <!-- Ayat Suci / Quote -->
-            <div class="quote-box">
-                "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang." <br><strong>Qs. Ar-Rum: 21</strong>
-            </div>
-
-            <!-- Audio Player -->
-            <div class="audio-player">
-                <div class="audio-controls">
-                    <i class="fa-solid fa-backward-step"></i>
-                    <div class="play-btn" id="playAudioBtn" onclick="toggleMusic()"><i class="fa-solid fa-play" id="playIcon"></i></div>
-                    <i class="fa-solid fa-forward-step"></i>
+                <div class="quote-box">
+                    "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                    jenismu
+                    sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
+                    kasih
+                    dan sayang." <br><strong>Qs. Ar-Rum: 21</strong>
                 </div>
-                <div class="audio-text">Click to play our song!</div>
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
+                <div class="section-title-top">The Wedding of</div>
+                <div class="main-couple-name">pria & wanita</div>
+
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <i class="fa-solid fa-backward-step"></i>
+                        <div class="play-btn" id="playAudioBtn" onclick="toggleMusic()"><i class="fa-solid fa-play"
+                                id="playIcon"></i></div>
+                        <i class="fa-solid fa-forward-step"></i>
+                    </div>
+                </div>
+                <img src="img/tangan.jpg" alt="tangan" id="tanganImg">
             </div>
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
-            <!-- Bride & Groom Section -->
             <div class="profile-section">
                 <h2>Bride & Groom</h2>
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
                 
                 <div class="profile-card">
-                    <div class="photo-frame">
-                        <!-- Ganti src dengan foto pria -->
-                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria">
+                    <div class="photo-frame" id="pria">
+                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria" id="pria">
                     </div>
-                    <div class="person-name">pria</div>
-                    <div class="person-fullname">pria </div>
+                    <div class="person-name" id="pria">pria</div>
+                    <div class="person-fullname">pria</div>
                     <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
                 </div>
 
                 <div class="ampersand">&</div>
 
                 <div class="profile-card">
-                    <div class="photo-frame">
-                        <!-- Ganti src dengan foto wanita -->
-                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita">
+                    <div class="photo-frame" id="wanita">
+                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita" id="wanita">
                     </div>
-                    <div class="person-name">wanita</div>
-                    <div class="person-fullname">wanita </div>
+                    <div class="person-name" id="wanita">wanita</div>
+                    <div class="person-fullname">wanita</div>
                     <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
                 </div>
             </div>
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
-            <!-- Save The Date Section -->
             <div class="save-date-section">
                 <div class="save-date-title">Save the Date</div>
-                
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
                 <div class="calendar-strip">
-                    <div class="calendar-day">Saturday<br><strong>5</strong></div>
-                    <div class="calendar-day active">Sunday<br><strong>6</strong><br><span style="font-size:9px;">D-Day !!</span></div>
-                    <div class="calendar-day">Monday<br><strong>7</strong></div>
+                  <div class="calendar-day">
+                  Saturday <hr class="calendar-divider"> <strong>31</strong>
+                  </div>
+                  <div class="calendar-day active">
+                  Sunday <hr class="calendar-divider"> <strong>1</strong><br><span style="font-size:9px;">D-Day !!</span>
+                  <img src="img/bgh.png" alt="Love Icon" id="bgh">
+                  </div>
+                  <div class="calendar-day">
+                  Monday <hr class="calendar-divider"> <strong>2</strong>
+                  </div>
                 </div>
+
+
 
                 <div class="event-box">
                     <h3>Akad Nikah</h3>
                     <div class="event-details">
-                        Minggu, 6 September 2027<br>
-                        Pukul : 08.30 - 10.00 WIB<br>
-                        Tempat : Kutamara<br>
-                        Jl.
+                        Minggu, 1 November 2026<br>
+                        Pukul : 09.00 - 10.00 WIB<br>
+                        Tempat : Kediaman mempelai Wanita<br>
+                        Jl. segagu RT 05 gang servis
                     </div>
                 </div>
 
                 <div class="event-box">
                     <h3>Resepsi</h3>
                     <div class="event-details">
-                        Minggu, 6 September 2027<br>
-                        Pukul : 10.00 - 13.00 WIB<br>
-                        Tempat : Kutamara<br>
-                        Jl.
+                        Minggu, 1 November 2026<br>
+                        Pukul : 10.00 - 16.00 WIB<br>
+                        Tempat : Kediaman mempelai Wanita<br>
+                        Jl. segagu RT 05 gang servis
                     </div>
                     <a href="https://maps.google.com" target="_blank" class="btn-location">Lihat Lokasi Disini</a>
                 </div>
 
-                <!-- Countdown Timer -->
                 <div class="countdown-box">
                     <div>Menuju Hari Bahagia</div>
                     <div class="countdown-timer" id="countdown">14:04:28:02</div>
@@ -605,99 +1367,169 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
-            <!-- Love Story Section -->
             <div class="love-story-section">
                 <h2>Love Story</h2>
-                
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
                 <div class="story-item">
                     <h4>Awal Pertama</h4>
-                    <p>Sebuah pertemuan sederhana menjadi awal dari cerita yang tak pernah kami sangka.</p>
+                    <p>...</p>
                 </div>
 
                 <div class="story-item">
                     <h4>Menjadi Kita</h4>
-                    <p>Waktu membawa kami semakin dekat, hingga akhirnya kami menyadari bahwa mungkin, inilah cara Tuhan mempertemukan dua hati yang tepat.</p>
+                    <p>...</p>
                 </div>
 
                 <div class="story-item">
                     <h4>Selamanya</h4>
-                    <p>Dengan penuh syukur, kami memilih untuk melangkah bersama, menulis cerita baru dalam satu ikatan pernikahan.</p>
+                    <p>...</p>
                 </div>
             </div>
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
-            <!-- Wedding Gift Section -->
             <div class="gift-section">
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
                 <h2>Wedding Gift</h2>
                 <div class="gift-desc">
-                    Kehadiran dan doa restu dari orang-orang terkasih adalah hadiah terindah bagi kami. Dan jika ingin memberikan tanda kasih, dapat melalui:
+                    Kehadiran dan doa restu dari orang-orang terkasih adalah hadiah terindah bagi kami. Dan jika ingin
+                    memberikan tanda kasih, dapat melalui:
                 </div>
 
                 <div class="bank-card">
                     <b>BCA</b><br>
                     xxxxxxxxxx<br>
-                    a.n pria 
+                    a.n pria
                 </div>
 
                 <div class="bank-card">
                     <b>Mandiri</b><br>
                     xxxxxxxxxx<br>
-                    a.n wanita 
+                    a.n wanita
                 </div>
             </div>
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
-            <!-- Wishes & RSVP Section -->
-            <div class="wishes-section">
-                <div class="wishes-box">
-                    <h3><i class="fa-solid fa-heart" style="font-size: 16px;"></i> Kirim Ucapan & Doa</h3>
-                    <p>Drop your sweetest wishes for us!</p>
-                    
-                    <form id="wishesForm">
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" id="senderName" placeholder="Tulis nama kamu di sini..." required>
+            <section class="rsvp-section fade-in-section">
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
+                <div class="container" style="max-width: 100%; box-shadow: none;">
+                    <h2 class="section-title">Kirim Ucapan & Doa</h2>
+                    <p class="rsvp-prompt">Drop your sweetest wishes for us</p>
+
+                    <form id="wishesForm" method="POST"
+                        action="https://script.google.com/macros/s/AKfycbzZEXcdTIarEeoWIHf0pi0JboUlOaNDa4GjETGxMruNOumMiq0aVnbHhsxeXoBLhcmj/exec">
+                        <label for="namaPengirim" class="form-label">Nama</label>
+                        <input id="namaPengirim" name="Nama" type="text" placeholder="Nama" required>
+
+                        <label for="jumlahHadir" class="form-label">Jumlah orang yang hadir</label>
+                        <input id="jumlahHadir" type="number" class="form-control" name="Jumlah" min="1" max="5"
+                            value="1">
+
+                        <label for="konfirmasiStatus" class="form-label">Konfirmasi kehadiran</label>
+                        <select id="konfirmasiStatus" name="Status" class="form-select">
+                            <option selected disabled>Pilih Status Kehadiran</option>
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
+                        </select>
+
+                        <label for="ucapanSelamat" class="form-label">Ucapan & Doa</label>
+                        <textarea id="ucapanSelamat" name="Ucapan" placeholder="Tulis ucapan" rows="5"></textarea>
+
+                        <div class="sticker-selection">
+                            <label>Pilih Stiker:</label>
+                            <div class="sticker-options" id="stickerOptions"></div>
+                            <input type="hidden" id="selectedSticker" name="Sticker" value="">
                         </div>
-                        <div class="form-group">
-                            <label>Ucapan & Doa</label>
-                            <textarea class="form-control" id="senderWish" rows="3" placeholder="Tulis ucapan kamu di sini..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i></button>
+                        <button id="btn-rsvp" type="submit">Kirim</button>
                     </form>
 
-                    <div class="guest-wishes-list" id="wishesList">
-                        <div class="guest-wish-item">
-                            <b>Beby Clarita</b><br>
-                            Barakallah fialmik, selamat ya pria & wanita semoga sakinah mawaddah warahmah yaa.
-                        </div>
-                        <div class="guest-wish-item">
-                            <b>Rian</b><br>
-                            Congrats ya! Semoga bahagia & langgeng sampai tua!
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    <div id="loading">Loading...</div>
+                    <h9>Ucapan Tercatat:</h9>
+                    <div class="wishesList-container" id="wishesList"></div>
 
-            <!-- Footer Section -->
+                    <div class="pagination-controls" id="paginationControls">
+                        <button id="prevPage" class="pagination-btn" disabled>« Sebelumnya</button>
+                        <span id="pageNumbers" class="page-info"></span>
+                        <button id="nextPage" class="pagination-btn" disabled>Selanjutnya »</button>
+                    </div>
+
+                </div>
+            </section>
             <div class="footer">
+
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
+                <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
+
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
+                <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
+
                 <h2>See You At Our Wedding Day!</h2>
                 <div style="font-size: 13px; color: #666; margin-bottom: 5px;">With Love</div>
                 <div class="names">pria & wanita</div>
-                <div class="footer-credit">Invitation by BimaTech</div>
+                <div class="footer-credit">Invitation by <br> <a href="https://bimatech.id" target="_blank">BimaTech</a>
+                </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Audio Background (Ganti link file musik jika ada) -->
     <audio id="bgMusic" loop>
         <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mp3">
     </audio>
 
+
     <script>
-        // Fungsi Membuka Undangan & Memutar Musik
+        document.addEventListener("DOMContentLoaded", function () {
+            const titleElement = document.getElementById("animatedTitle");
+            if (!titleElement) return;
+
+            let letterIndex = 0;
+            Array.from(titleElement.childNodes).forEach(node => {
+                if (node.nodeType !== Node.TEXT_NODE) return;
+
+                const fragment = document.createDocumentFragment();
+                for (const character of node.textContent) {
+                    if (/\s/.test(character)) {
+                        fragment.appendChild(document.createTextNode(character));
+                        continue;
+                    }
+
+                    const span = document.createElement("span");
+                    span.textContent = character;
+                    span.style.animationDelay = (letterIndex * 0.04) + "s";
+                    letterIndex++;
+                    fragment.appendChild(span);
+                }
+                node.replaceWith(fragment);
+            });
+        });
+    </script>
+
+    <script>
+        // -- Unified Script untuk Cover, Musik, Countdown, dan RSVP --
         const bgMusic = document.getElementById('bgMusic');
         const playIcon = document.getElementById('playIcon');
         let isPlaying = false;
@@ -705,7 +1537,10 @@
         function openInvitation() {
             const cover = document.getElementById('cover');
             cover.classList.add('hide');
-            
+
+            // Kembalikan scroll body
+            document.body.style.overflow = 'auto';
+
             // Putar musik otomatis saat dibuka
             bgMusic.play().then(() => {
                 isPlaying = true;
@@ -714,6 +1549,10 @@
             }).catch(e => {
                 console.log("Autoplay blocked:", e);
             });
+
+            setTimeout(function () {
+                cover.style.display = 'none';
+            }, 800);
         }
 
         function toggleMusic() {
@@ -730,8 +1569,8 @@
             }
         }
 
-        // Countdown Timer menuju 6 September 2027
-        const weddingDate = new Date("September 6, 2027 08:30:00").getTime();
+        // Countdown Timer menuju 1 November 2026
+        const weddingDate = new Date("November 1, 2026 09:00:00").getTime();
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -747,48 +1586,222 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("countdown").innerHTML = 
-                String(days).padStart(2, '0') + ":" + 
-                String(hours).padStart(2, '0') + ":" + 
-                String(minutes).padStart(2, '0') + ":" + 
+            document.getElementById("countdown").innerHTML =
+                String(days).padStart(2, '0') + ":" +
+                String(hours).padStart(2, '0') + ":" +
+                String(minutes).padStart(2, '0') + ":" +
                 String(seconds).padStart(2, '0');
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Form Submit Ucapan
-        const wishesForm = document.getElementById('wishesForm');
-        const wishesList = document.getElementById('wishesList');
+        // -- Pagination & RSVP Variables --
+        let allWishes = [];
+        const wishesPerPage = 5;
+        let currentPage = 1;
 
-        wishesForm.addEventListener('submit', function(e) {
+        const wishesListContainer = document.getElementById('wishesList');
+        const prevPageBtn = document.getElementById('prevPage');
+        const nextPageBtn = document.getElementById('nextPage');
+        const pageNumbersSpan = document.getElementById('pageNumbers');
+        const paginationControls = document.getElementById('paginationControls');
+
+        const stickers = [
+            { id: 'sticker1', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker1.gif' },
+            { id: 'sticker2', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker2.jpg' },
+            { id: 'sticker3', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker3.gif' },
+            { id: 'sticker4', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker4.jpg' },
+            { id: 'sticker5', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker5.gif' },
+            { id: 'sticker6', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker6.jpg' },
+            { id: 'sticker7', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker7.jpg' },
+            { id: 'sticker8', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker8.jpg' },
+            { id: 'sticker9', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker9.jpg' },
+            { id: 'sticker10', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker10.gif' },
+            { id: 'sticker11', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker11.gif' },
+            { id: 'sticker12', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker12.gif' },
+            { id: 'sticker13', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker13.gif' },
+            { id: 'sticker14', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker14.jpg' },
+            { id: 'sticker15', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker15.jpg' },
+            { id: 'sticker16', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker16.gif' },
+            { id: 'sticker17', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker17.gif' },
+            { id: 'sticker18', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker18.gif' },
+            { id: 'sticker19', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker19.gif' },
+            { id: 'sticker20', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker20.jpg' },
+            { id: 'sticker21', url: 'https://bimawest.github.io/3d-wedding/images/temp/sticker21.gif' },
+        ];
+
+        function renderStickers() {
+            const stickerOptionsContainer = document.getElementById('stickerOptions');
+            stickerOptionsContainer.innerHTML = '';
+
+            stickers.forEach(sticker => {
+                const stickerItem = document.createElement('div');
+                stickerItem.classList.add('sticker-item');
+                stickerItem.dataset.stickerUrl = sticker.url;
+
+                const img = document.createElement('img');
+                img.src = sticker.url;
+                img.alt = `Stiker ${sticker.id}`;
+
+                stickerItem.appendChild(img);
+                stickerOptionsContainer.appendChild(stickerItem);
+
+                stickerItem.addEventListener('click', () => {
+                    const currentSelected = document.querySelector('.sticker-item.selected');
+                    if (currentSelected) {
+                        currentSelected.classList.remove('selected');
+                    }
+                    stickerItem.classList.add('selected');
+                    document.getElementById('selectedSticker').value = sticker.url;
+                });
+            });
+        }
+
+        renderStickers();
+
+        const form = document.getElementById('wishesForm');
+        const loading = document.getElementById('loading');
+        const submitButton = document.getElementById('btn-rsvp');
+
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
-            const name = document.getElementById('senderName').value;
-            const wish = document.getElementById('senderWish').value;
+            loading.style.display = 'block';
+            submitButton.style.display = 'none';
 
-            if(name && wish) {
-                const newItem = document.createElement('div');
-                newItem.classList.add('guest-wish-item');
-                newItem.innerHTML = `<b>${escapeHtml(name)}</b><br>${escapeHtml(wish)}`;
-                
-                wishesList.prepend(newItem);
-                
-                document.getElementById('senderName').value = '';
-                document.getElementById('senderWish').value = '';
-                alert('Ucapan & doa berhasil dikirim!');
+            const formData = new FormData(form);
+            fetch('https://script.google.com/macros/s/AKfycbyuR3xcwVyZTdkiVSnYkH2k2DMdZV1GApIGng6j9m3kxrm4NkxMK3YyMzub3qX4q3Lx/exec', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Ucapan berhasil dikirim!');
+                    form.reset();
+                    const currentSelected = document.querySelector('.sticker-item.selected');
+                    if (currentSelected) currentSelected.classList.remove('selected');
+                    document.getElementById('selectedSticker').value = '';
+                    fetchWishes();
+                })
+                .catch(error => {
+                    alert('Terjadi kesalahan saat mengirim ucapan: ' + error.message);
+                })
+                .finally(() => {
+                    loading.style.display = 'none';
+                    submitButton.style.display = 'block';
+                });
+        });
+
+        function generateInitials(name) {
+            const words = name.split(' ').filter(word => word.length > 0);
+            let initials = '';
+            if (words.length === 1) {
+                initials = words[0].substring(0, 1);
+            } else if (words.length >= 2) {
+                initials = words[0].substring(0, 1) + words[1].substring(0, 1);
+            }
+            return initials.toUpperCase();
+        }
+
+        function formatTimestamp(timestampValue) {
+            let date = new Date(timestampValue);
+            if (isNaN(date.getTime())) return 'Waktu tidak valid';
+            return date.toLocaleString('id-ID', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
+        function displayWishes(page) {
+            wishesListContainer.innerHTML = '';
+            const startIndex = (page - 1) * wishesPerPage;
+            const endIndex = startIndex + wishesPerPage;
+            const wishesToShow = allWishes.slice(startIndex, endIndex);
+
+            if (wishesToShow.length === 0 && allWishes.length === 0) {
+                wishesListContainer.innerHTML = '<p style="text-align: center; color: #777;">Belum ada ucapan.</p>';
+                paginationControls.style.display = 'none';
+                return;
+            }
+
+            wishesToShow.forEach(wish => {
+                const initials = generateInitials(wish.Nama || 'Anonim');
+                const timestamp = wish.Date ? formatTimestamp(wish.Date) : '';
+                const wishCard = document.createElement('div');
+                wishCard.classList.add('wish-card');
+
+                let stickerHtml = '';
+                if (typeof wish.Sticker === 'string' && wish.Sticker.trim()) {
+                    stickerHtml = `<img src="${wish.Sticker}" alt="Stiker" class="wish-sticker">`;
+                }
+
+                const kehadiran = wish.Status || 'Belum diisi';
+                const statusClass = (kehadiran.toLowerCase() === 'hadir') ? 'status-hadir' : 'status-tidak-hadir';
+                const jumlahHadir = wish.Jumlah || 0;
+
+                wishCard.innerHTML = `
+                    <div class="wish-initials">${initials}</div>
+                    <div style="flex-grow: 1;">
+                        <p style="font-weight: bold; color: #333;">${wish.Nama || 'Anonim'}</p>
+                        <span class="attendance-status ${statusClass}">${kehadiran}</span>
+                        <span class="attendance-status">(${jumlahHadir} orang)</span>
+                        <p style="margin-top: 5px; color: #555;">${wish.Ucapan || ''}</p>
+                        <span style="font-size: 10px; color: #999; display: block; margin-top: 5px;">${timestamp}</span>
+                    </div>
+                    ${stickerHtml}
+                `;
+                wishesListContainer.appendChild(wishCard);
+            });
+
+            updatePaginationControls();
+        }
+
+        function updatePaginationControls() {
+            const totalPages = Math.ceil(allWishes.length / wishesPerPage);
+            prevPageBtn.disabled = currentPage === 1;
+            nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+            pageNumbersSpan.textContent = `Halaman ${currentPage} dari ${totalPages || 1}`;
+            paginationControls.style.display = totalPages > 1 ? 'flex' : 'none';
+        }
+
+        prevPageBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                displayWishes(currentPage);
             }
         });
 
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        nextPageBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(allWishes.length / wishesPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayWishes(currentPage);
+            }
+        });
+
+        function fetchWishes() {
+            wishesListContainer.innerHTML = '';
+            paginationControls.style.display = 'none';
+            loading.style.display = 'block';
+
+            fetch('https://script.google.com/macros/s/AKfycbyuR3xcwVyZTdkiVSnYkH2k2DMdZV1GApIGng6j9m3kxrm4NkxMK3YyMzub3qX4q3Lx/exec')
+                .then(response => response.json())
+                .then(wishes => {
+                    allWishes = wishes || [];
+                    allWishes.reverse();
+                    currentPage = 1;
+                    displayWishes(currentPage);
+                })
+                .catch(error => {
+                    wishesListContainer.innerHTML = '<p style="text-align: center; color: red;">Gagal memuat ucapan.</p>';
+                })
+                .finally(() => {
+                    loading.style.display = 'none';
+                });
         }
+
+        fetchWishes();
     </script>
 </body>
+
 </html>
