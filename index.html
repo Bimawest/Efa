@@ -213,6 +213,17 @@
             margin: 15px 0;
         }
 
+        .cover-date, .cover-names {
+            display: inline-block;
+        }
+
+        .cover-date span, .cover-names span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(15px) rotate(-15deg) scale(0.7);
+            animation: revealLetter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
         .btn-open {
             background-color: #dbeafe;
             color: #4a88b5;
@@ -227,6 +238,17 @@
             cursor: pointer;
             padding: 10px 25px;
             margin-top: 20px;
+            opacity: 0;
+            visibility: hidden;
+            animation: showOpenButton 0.4s ease forwards;
+            animation-delay: var(--reveal-duration, 0s);
+        }
+
+        @keyframes showOpenButton {
+            to {
+                opacity: 1;
+                visibility: visible;
+            }
         }
 
         .btn-open:hover {
@@ -249,6 +271,14 @@
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(-30px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+        }
+
+        .content h2.animate-names {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .content span.pria, .content span.wanita {
@@ -257,6 +287,26 @@
             color: #4a88b5;
             display: block;
             font-weight: 600;
+        }
+
+        .content h2 span.pria,
+        .content h2 span.wanita {
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+        }
+
+        .content h2 span.pria {
+            transform: translateX(-100%);
+        }
+
+        .content h2 span.wanita {
+            transform: translateX(100%);
+        }
+
+        .content h2.animate-names span.pria,
+        .content h2.animate-names span.wanita {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .content .pria {
@@ -326,19 +376,6 @@
             animation-delay: 2s;
         }
 
-        .section-title-top {
-            font-size: 15px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-
-        .main-couple-name {
-            font-family: 'Sacramento', cursive;
-            font-size: 45px;
-            color: #4a88b5;
-            margin-bottom: 25px;
-        }
-
         /* Quran Quote */
         .quote-box {
             background-color: #fdf2f8;
@@ -349,6 +386,41 @@
             line-height: 1.6;
             color: #705268;
             margin-bottom: 30px;
+        }
+
+        .quote-box p span {
+            opacity: 0;
+            transform: translateY(10px);
+            display: inline-block;
+        }
+
+        .quote-box.reveal-active p span {
+            animation: revealQuote 0.5s ease forwards;
+        }
+
+        @keyframes revealQuote {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quote-box strong {
+            display: block;
+            margin-top: 10px;
+            font-size: 12px;
+            opacity: 0;
+        }
+
+        .quote-box.reveal-active strong {
+            animation: fadeInAuthor 1s ease forwards;
+            animation-delay: var(--quote-author-delay, 3.5s);
+        }
+
+        @keyframes fadeInAuthor {
+            to {
+                opacity: 1;
+            }
         }
 
         /* Audio Player */
@@ -394,6 +466,27 @@
             font-size: 35px;
             color: #4a88b5;
             margin-bottom: 20px;
+        }
+
+        .profile-section h2 .profile-bride,
+        .profile-section h2 .profile-groom {
+            display: inline-block;
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .profile-section h2 .profile-bride {
+            transform: translateX(-16px);
+        }
+
+        .profile-section h2 .profile-groom {
+            transform: translateX(16px);
+        }
+
+        .profile-section h2.animate-profile-title .profile-bride,
+        .profile-section h2.animate-profile-title .profile-groom {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .profile-section {
@@ -1254,12 +1347,12 @@
                 <span class="wanita">wanita</span>
                 </h2>
 
-                <div class="quote-box">
-                    "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                <div class="quote-box" id="quote-box">
+                    <p id="quote-text">Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
                     jenismu
                     sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
                     kasih
-                    dan sayang." <br><strong>Qs. Ar-Rum: 21</strong>
+                    dan sayang."</p> <br><strong id="quote-author">Qs. Ar-Rum: 21</strong>
                 </div>
 
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
@@ -1268,9 +1361,6 @@
 
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
-
-                <div class="section-title-top">The Wedding of</div>
-                <div class="main-couple-name">pria & wanita</div>
 
                 <div class="audio-player">
                     <div class="audio-controls">
@@ -1286,7 +1376,7 @@
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
             <div class="profile-section">
-                <h2>Bride & Groom</h2>
+                <h2><span class="profile-bride">Bride</span> & <span class="profile-groom">Groom</span></h2>
 
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
@@ -1507,6 +1597,7 @@
 
 
     <script>
+        // -- Animasi Teks untuk Cover Title --
         document.addEventListener("DOMContentLoaded", function () {
             const titleElement = document.getElementById("animatedTitle");
             if (!titleElement) return;
@@ -1532,6 +1623,92 @@
             });
         });
     </script>
+    
+    <script>
+        // -- Animasi Teks untuk Cover Date dan Cover Names --
+        document.addEventListener("DOMContentLoaded", function () {
+            let letterIndex = 0;
+            const openButton = document.querySelector(".btn-open");
+            document.querySelectorAll(".cover-date, .cover-names").forEach(element => {
+                Array.from(element.childNodes).forEach(node => {
+                    if (node.nodeType !== Node.TEXT_NODE) return;
+
+                    const fragment = document.createDocumentFragment();
+                    for (const character of node.textContent) {
+                        if (/\s/.test(character)) {
+                            fragment.appendChild(document.createTextNode(character));
+                            continue;
+                        }
+
+                        const span = document.createElement("span");
+                        span.textContent = character;
+                        span.style.animationDelay = (letterIndex * 0.04) + "s";
+                        letterIndex++;
+                        fragment.appendChild(span);
+                    }
+                    node.replaceWith(fragment);
+                });
+            });
+            if (openButton) {
+                openButton.style.setProperty("--reveal-duration", `${Math.max(letterIndex - 1, 0) * 0.04 + 0.5}s`);
+            }
+        });
+    </script>
+
+    <script>
+        // -- Animasi revealQuote per huruf setelah tombol Open diklik --
+        function prepareQuoteAnimation() {
+            const quoteText = document.getElementById("quote-text");
+            if (!quoteText) return;
+
+            let letterIndex = 0;
+            Array.from(quoteText.childNodes).forEach(node => {
+                if (node.nodeType !== Node.TEXT_NODE) return;
+
+                const fragment = document.createDocumentFragment();
+                for (const character of node.textContent) {
+                    if (/\s/.test(character)) {
+                        fragment.appendChild(document.createTextNode(character));
+                        continue;
+                    }
+
+                    const span = document.createElement("span");
+                    span.textContent = character;
+                    span.style.animationDelay = `${letterIndex * 0.04}s`;
+                    fragment.appendChild(span);
+                    letterIndex++;
+                }
+                node.replaceWith(fragment);
+            });
+
+            const quoteBox = quoteText.closest(".quote-box");
+            if (quoteBox) {
+                quoteBox.style.setProperty(
+                    "--quote-author-delay",
+                    `${letterIndex * 0.04 + 0.5}s`
+                );
+            }
+        }
+
+        function revealQuoteAfterOpen() {
+            const quoteText = document.getElementById("quote-text");
+            const quoteBox = quoteText && quoteText.closest(".quote-box");
+            if (quoteBox) quoteBox.classList.add("reveal-active");
+        }
+
+        document.addEventListener("DOMContentLoaded", prepareQuoteAnimation);
+
+        const profileTitle = document.querySelector('.profile-section h2');
+        if (profileTitle) {
+            const profileTitleObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    profileTitle.classList.add('animate-profile-title');
+                    observer.unobserve(profileTitle);
+                }
+            }, { threshold: 0.2 });
+            profileTitleObserver.observe(profileTitle);
+        }
+    </script>
 
     <script>
         // -- Unified Script untuk Cover, Musik, Countdown, dan RSVP --
@@ -1542,6 +1719,10 @@
         function openInvitation() {
             const cover = document.getElementById('cover');
             cover.classList.add('hide');
+
+            document.querySelector('.content h2')?.classList.add('animate-names');
+
+            revealQuoteAfterOpen();
 
             // Kembalikan scroll body
             document.body.style.overflow = 'auto';
