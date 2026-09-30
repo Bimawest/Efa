@@ -65,55 +65,7 @@
             transform: translateY(-100%);
         }
 
-        /* Styling Dasar untuk Gambar Hati */
-        #cover img[id^="hati"] {
-            position: absolute;
-            width: 35px;
-            height: auto;
-            z-index: 2;
-            animation: floatHeart 3s ease-in-out infinite alternate;
-        }
-
-        #cover #hati1 {
-            top: 25%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        #cover #hati2 {
-            top: 35%;
-            right: 12%;
-            animation-delay: 1s;
-        }
-
-        #cover #hati3 {
-            bottom: 20%;
-            right: 5%;
-            animation-delay: 2s;
-        }
-
-        /* Styling Dasar Coretan */
-        #cover img[id^="coretan"] {
-            position: absolute;
-            width: 50px;
-            height: auto;
-            z-index: 1;
-            opacity: 0.7;
-            animation: floatCoretan 4s ease-in-out infinite alternate;
-        }
-
-        #cover #coretan1 {
-            top: 25%;
-            right: 20%;
-            animation-delay: 0s;
-        }
-
-        #cover #coretan2 {
-            bottom: 25%;
-            left: 10%;
-            animation-delay: 2s;
-        }
-
+        /* Keyframes Animasi */
         @keyframes floatCoretan {
             0% {
                 transform: translateY(0px) rotate(0deg) scale(1);
@@ -141,6 +93,54 @@
             }
         }
 
+        /* Cover Hati & Coretan */
+        #cover img[id^="hati"] {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 2;
+            animation: floatHeart 3s ease-in-out infinite alternate;
+        }
+
+        #cover #hati1 {
+            top: 25%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        #cover #hati2 {
+            top: 35%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        #cover #hati3 {
+            bottom: 20%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        #cover img[id^="coretan"] {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            z-index: 1;
+            opacity: 0.7;
+            animation: floatCoretan 4s ease-in-out infinite alternate;
+        }
+
+        #cover #coretan1 {
+            top: 25%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        #cover #coretan2 {
+            bottom: 25%;
+            left: 10%;
+            animation-delay: 2s;
+        }
+
         .ribbon img {
             height: 80px;
             width: 100%;
@@ -163,7 +163,6 @@
             font-weight: 600;
             justify-content: center;
             gap: 6px;
-
         }
 
         .cover-title span {
@@ -172,7 +171,6 @@
             transform: translateX(15px) rotate(-15deg) scale(0.7);
             animation: revealLetter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-
 
         @keyframes revealLetter {
             0% {
@@ -189,6 +187,10 @@
                 opacity: 1;
                 transform: translateY(0) rotate(0deg) scale(1);
             }
+        }
+
+        .cover-date, .cover-names {
+            display: inline-block;
         }
 
         .cover-date {
@@ -211,10 +213,6 @@
             font-size: 42px;
             color: #4a88b5;
             margin: 15px 0;
-        }
-
-        .cover-date, .cover-names {
-            display: inline-block;
         }
 
         .cover-date span, .cover-names span {
@@ -327,7 +325,7 @@
             opacity: 1;
         }
 
-        /* Styling Dasar untuk Gambar Hati */
+        /* Styling Spesifik Hati & Coretan di .content */
         .content img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -354,7 +352,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .content img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -450,17 +447,17 @@
             cursor: pointer;
         }
 
-        .audio-text {
-            font-size: 12px;
-            color: #666;
-        }
-
         .string-divider {
             margin: 20px 0;
             color: #7ab2d3;
         }
 
         /* Bride & Groom Profile */
+        .profile-section {
+            position: relative;
+            z-index: 1;
+        }
+
         .profile-section h2 {
             font-family: 'Sacramento', cursive;
             font-size: 35px;
@@ -489,12 +486,7 @@
             transform: translateX(0);
         }
 
-        .profile-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Styling Dasar untuk Gambar Hati */
+        /* Styling Spesifik Hati & Coretan di .profile-section */
         .profile-section img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -521,7 +513,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .profile-section img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -555,25 +546,49 @@
             padding: 5px;
             margin: 0 auto 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transform: rotate(3deg);
         }
 
-        .photo-frame#wanita {
-            transform: rotate(-3deg);
+        .photo-frame.frame-pria {
+            transform: translateX(-16px) rotate(3deg);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .photo-frame.frame-wanita {
+            transform: translateX(16px) rotate(-3deg);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .profile-card.animate-profile .photo-frame.frame-pria {
+            transform: translateX(0) rotate(3deg);
+            opacity: 1;
+        }
+
+        .profile-card.animate-profile .photo-frame.frame-wanita {
+            transform: translateX(0) rotate(-3deg);
+            opacity: 1;
+        }
+
+        .person-name,
+        .person-fullname,
+        .person-parents {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .profile-card.animate-profile .person-name,
+        .profile-card.animate-profile .person-fullname,
+        .profile-card.animate-profile .person-parents {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .photo-frame#pria {
-            transform: rotate(3deg);
-        }
-
-        .photo-frame#wanita {
-            transform: rotate(-3deg);
         }
 
         .person-name {
@@ -586,7 +601,7 @@
             margin-top: -15%;
         }
 
-        .person-name#wanita {
+        .person-name.name-wanita {
             left: -22%;
         }
 
@@ -617,7 +632,7 @@
             padding: 20px 0;
         }
 
-        /* Styling Dasar untuk Gambar Hati */
+        /* Styling Spesifik Hati & Coretan di .save-date-section */
         .save-date-section img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -633,7 +648,7 @@
         }
 
         .save-date-section #hati2 {
-            top: 45%;
+            top: 43%;
             right: 12%;
             animation-delay: 1s;
         }
@@ -644,7 +659,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .save-date-section img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -671,6 +685,7 @@
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 15px;
+            display: inline-block;
         }
 
         .calendar-strip {
@@ -680,6 +695,13 @@
             font-size: 25px;
             color: black;
             transform: rotate(-10deg);
+            animation: calendarWiggle 2.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        @keyframes calendarWiggle {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(-5deg); }
         }
 
         .calendar-day {
@@ -696,21 +718,16 @@
             position: relative;
         }
 
-      
         .calendar-day hr.calendar-divider {
             border: none;
-            border-top: 1px solid #4a88b5; /* Sesuaikan warna garis Anda */
-            width: auto;                /* Biarkan otomatis menyesuaikan */
+            border-top: 1px solid #4a88b5;
+            width: auto;
             margin-top: 8px;
             margin-bottom: 8px;
-    
-            /* Tarik garis ke kiri dan ke kanan menembus padding kotak */
-            margin-left: -20px;   /* Sesuaikan besar nilai ini dengan padding kiri .calendar-day */
-            margin-right: -20px;  /* Sesuaikan besar nilai ini dengan padding kanan .calendar-day */
+            margin-left: -20px;
+            margin-right: -20px;
         }
 
-      
-      
         .calendar-day.active img[id^="bgh"] {
             position: absolute;
             width: 130%;
@@ -729,7 +746,6 @@
             0% {
                 transform: scale(1);
             }
-
             100% {
                 transform: scale(1.1);
             }
@@ -737,6 +753,14 @@
 
         .event-box {
             margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .event-box.event-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .event-box h3 {
@@ -791,7 +815,6 @@
             padding: 20px 10px;
         }
 
-        /* Styling Dasar untuk Gambar Hati */
         .love-story-section img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -818,7 +841,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .love-story-section img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -859,15 +881,47 @@
             font-size: 14px;
             color: #db2777;
             margin-bottom: 5px;
+            opacity: 0;
+            transform: translateX(-16px);
         }
 
         .story-item p {
             font-size: 12px;
             color: #4a88b5;
             line-height: 1.5;
+            opacity: 0;
+        }
+
+        @keyframes storyTitleSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes storyParagraphFade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .story-item.story-visible h4 {
+            animation: storyTitleSlide 0.8s ease forwards;
+        }
+
+        .story-item.story-visible p {
+            animation: storyParagraphFade 0.8s ease 0.25s forwards;
         }
 
         /* Wedding Gift */
+        .gift-section {
+            position: relative;
+            z-index: 1;
+        }
+
         .gift-section h2 {
             font-family: 'Sacramento', cursive;
             font-size: 38px;
@@ -875,12 +929,6 @@
             margin-bottom: 10px;
         }
 
-        .gift-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Styling Dasar untuk Gambar Hati */
         .gift-section img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -907,7 +955,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .gift-section img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -952,6 +999,7 @@
             color: #db2777;
         }
 
+        /* RSVP Section */
         .rsvp-section {
             position: relative;
             z-index: 1;
@@ -960,7 +1008,6 @@
             text-align: left;
         }
 
-        /* Styling Dasar untuk Gambar Hati */
         .rsvp-section img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -987,7 +1034,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .rsvp-section img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -1247,7 +1293,6 @@
             font-family: 'Sacramento', cursive;
         }
 
-        /* Styling Dasar untuk Gambar Hati */
         .footer img[id^="hati"] {
             position: absolute;
             width: 35px;
@@ -1274,7 +1319,6 @@
             animation-delay: 2s;
         }
 
-        /* Styling Dasar Coretan */
         .footer img[id^="coretan"] {
             position: absolute;
             width: 50px;
@@ -1319,6 +1363,7 @@
 <body>
 
     <div class="container">
+        <!-- Cover Section -->
         <div id="cover">
             <div class="ribbon">
                 <img src="img/pita.jpg" alt="ribbon Illustration">
@@ -1341,6 +1386,7 @@
         </div>
 
         <div class="main-content">
+            <!-- Content Section -->
             <div class="content">
                 <h2>the wedding of
                 <span class="pria">pria</span>
@@ -1375,6 +1421,7 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
+            <!-- Profile Section -->
             <div class="profile-section">
                 <h2><span class="profile-bride">Bride</span> & <span class="profile-groom">Groom</span></h2>
 
@@ -1386,10 +1433,10 @@
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
                 
                 <div class="profile-card">
-                    <div class="photo-frame" id="pria">
-                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria" id="pria">
+                    <div class="photo-frame frame-pria">
+                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria">
                     </div>
-                    <div class="person-name" id="pria">pria</div>
+                    <div class="person-name">pria</div>
                     <div class="person-fullname">pria</div>
                     <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
                 </div>
@@ -1397,10 +1444,10 @@
                 <div class="ampersand">&</div>
 
                 <div class="profile-card">
-                    <div class="photo-frame" id="wanita">
-                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita" id="wanita">
+                    <div class="photo-frame frame-wanita">
+                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita">
                     </div>
-                    <div class="person-name" id="wanita">wanita</div>
+                    <div class="person-name name-wanita">wanita</div>
                     <div class="person-fullname">wanita</div>
                     <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
                 </div>
@@ -1408,6 +1455,7 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
+            <!-- Save The Date Section -->
             <div class="save-date-section">
                 <div class="save-date-title">Save the Date</div>
 
@@ -1430,8 +1478,6 @@
                   Monday <hr class="calendar-divider"> <strong>2</strong>
                   </div>
                 </div>
-
-
 
                 <div class="event-box">
                     <h3>Akad Nikah</h3>
@@ -1462,6 +1508,7 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
+            <!-- Love Story Section -->
             <div class="love-story-section">
                 <h2>Love Story</h2>
 
@@ -1490,8 +1537,8 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
+            <!-- Gift Section -->
             <div class="gift-section">
-
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
@@ -1520,8 +1567,8 @@
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
 
+            <!-- RSVP Section -->
             <section class="rsvp-section fade-in-section">
-
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
@@ -1572,8 +1619,9 @@
 
                 </div>
             </section>
-            <div class="footer">
 
+            <!-- Footer Section -->
+            <div class="footer">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati2">
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati3">
@@ -1594,7 +1642,6 @@
     <audio id="bgMusic" loop>
         <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mp3">
     </audio>
-
 
     <script>
         // -- Animasi Teks untuk Cover Title --
@@ -1708,6 +1755,42 @@
             }, { threshold: 0.2 });
             profileTitleObserver.observe(profileTitle);
         }
+
+        const profileCardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-profile');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.profile-section .profile-card').forEach(card => {
+            profileCardObserver.observe(card);
+        });
+
+        const eventBoxObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('event-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.event-box').forEach(eventBox => {
+            eventBoxObserver.observe(eventBox);
+        });
+
+        const storyItemObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('story-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        document.querySelectorAll('.story-item').forEach(storyItem => {
+            storyItemObserver.observe(storyItem);
+        });
     </script>
 
     <script>
