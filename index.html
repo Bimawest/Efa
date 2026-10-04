@@ -4,10 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of pria & wanita</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;500;600;700&display=swap"
+    <title>The Wedding of Heri & Eva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -56,13 +60,15 @@
             text-align: center;
             padding: 0;
             margin: 0;
-            transition: transform 0.8s ease-in-out;
+            /* Diubah menjadi 2s untuk durasi transisi transform dan opacity */
+            transition: transform 2s ease-in-out, opacity 2s ease-in-out;
             overflow-x: hidden;
         }
 
         /* Kelas untuk mentrigger transisi penutupan cover */
         #cover.hide {
             transform: translateY(-100%);
+            opacity: 0; /* Efek memudar secara bersamaan */
         }
 
         /* Keyframes Animasi */
@@ -103,7 +109,7 @@
         }
 
         #cover #hati1 {
-            top: 25%;
+            top: 28%;
             left: 10%;
             animation-delay: 0s;
         }
@@ -156,13 +162,28 @@
         }
 
         .cover-title {
-            font-family: 'Sacramento', cursive;
-            font-size: 22px;
+            font-size: 2rem;
             color: #7ab2d3;
             margin-bottom: 5px;
             font-weight: 600;
             justify-content: center;
-            gap: 6px;
+            gap: 100px;
+        }
+
+        .cover-title .these-couple {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            display: block;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .cover-title .getting-married {
+            font-family: 'Cookie', cursive;
+            font-size: 3.5rem;
+            display: block;
+            margin-top: 5px;
+            gap: 10px;
         }
 
         .cover-title span {
@@ -194,25 +215,25 @@
         }
 
         .cover-date {
-            font-family: 'Sacramento', cursive;
-            font-size: 14px;
+            font-family: 'Cookie', cursive;
+            font-size: 20px;
             color: #7ab2d3;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             font-weight: 600;
         }
 
         .couple-illustration {
-            width: 220px;
+            width: 300px;
             height: auto;
-            margin: 15px 0;
+            margin: 0;
             border-radius: 10px;
         }
 
         .cover-names {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 42px;
             color: #4a88b5;
-            margin: 15px 0;
+            margin: 5px 0;
         }
 
         .cover-date span, .cover-names span {
@@ -235,7 +256,7 @@
             z-index: 10;
             cursor: pointer;
             padding: 10px 25px;
-            margin-top: 20px;
+            margin-top: 10px;
             opacity: 0;
             visibility: hidden;
             animation: showOpenButton 0.4s ease forwards;
@@ -279,41 +300,41 @@
             transform: translateY(0);
         }
 
-        .content span.pria, .content span.wanita {
-            font-family: 'Sacramento', cursive;
+        .content span.Heri, .content span.Eva {
+            font-family: 'Cookie', cursive;
             font-size: 4.5rem;
             color: #4a88b5;
             display: block;
             font-weight: 600;
         }
 
-        .content h2 span.pria,
-        .content h2 span.wanita {
+        .content h2 span.Heri,
+        .content h2 span.Eva {
             opacity: 0;
-            transition: transform 1s ease, opacity 1s ease;
+            transition: transform 2.5s ease, opacity 2.5s ease;
         }
 
-        .content h2 span.pria {
+        .content h2 span.Heri {
             transform: translateX(-100%);
         }
 
-        .content h2 span.wanita {
+        .content h2 span.Eva {
             transform: translateX(100%);
         }
 
-        .content h2.animate-names span.pria,
-        .content h2.animate-names span.wanita {
+        .content h2.animate-names span.Heri,
+        .content h2.animate-names span.Eva {
             opacity: 1;
             transform: translateX(0);
         }
 
-        .content .pria {
+        .content .Heri {
             margin-right: 25%;
         }
 
-        .content .wanita {
+        .content .Eva {
             margin-left: 25%;
-            margin-top: -20%;
+            margin-top: -10%;
         }
 
         .content #tanganImg {
@@ -459,7 +480,7 @@
         }
 
         .profile-section h2 {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 35px;
             color: #4a88b5;
             margin-bottom: 20px;
@@ -502,7 +523,7 @@
         }
 
         .profile-section #hati2 {
-            top: 45%;
+            top: 41%;
             right: 12%;
             animation-delay: 1s;
         }
@@ -548,24 +569,24 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .photo-frame.frame-pria {
+        .photo-frame.frame-Heri {
             transform: translateX(-16px) rotate(3deg);
             opacity: 0;
             transition: transform 0.8s ease, opacity 0.8s ease;
         }
 
-        .photo-frame.frame-wanita {
+        .photo-frame.frame-Eva {
             transform: translateX(16px) rotate(-3deg);
             opacity: 0;
             transition: transform 0.8s ease, opacity 0.8s ease;
         }
 
-        .profile-card.animate-profile .photo-frame.frame-pria {
+        .profile-card.animate-profile .photo-frame.frame-Heri {
             transform: translateX(0) rotate(3deg);
             opacity: 1;
         }
 
-        .profile-card.animate-profile .photo-frame.frame-wanita {
+        .profile-card.animate-profile .photo-frame.frame-Eva {
             transform: translateX(0) rotate(-3deg);
             opacity: 1;
         }
@@ -593,7 +614,7 @@
 
         .person-name {
             position: relative;
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 32px;
             color: #e879f9;
             font-weight: 600;
@@ -601,7 +622,7 @@
             margin-top: -15%;
         }
 
-        .person-name.name-wanita {
+        .person-name.name-Eva {
             left: -22%;
         }
 
@@ -681,7 +702,7 @@
         }
 
         .save-date-title {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 15px;
@@ -863,7 +884,7 @@
         }
 
         .love-story-section h2 {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 20px;
@@ -923,7 +944,7 @@
         }
 
         .gift-section h2 {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 38px;
             color: #4a88b5;
             margin-bottom: 10px;
@@ -982,6 +1003,14 @@
             padding: 0 20px;
             margin-bottom: 20px;
             line-height: 1.5;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .gift-desc.animate-gift {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .bank-card {
@@ -993,10 +1022,32 @@
             margin: 0 auto 15px;
             font-size: 13px;
             color: #555;
+            position: relative;
         }
 
         .bank-card b {
             color: #db2777;
+        }
+
+        .btn-copy {
+            background-color: #dbeafe;
+            color: #4a88b5;
+            border: 1px solid #93c5fd;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .btn-copy:hover {
+            background-color: #bfdbfe;
         }
 
         /* RSVP Section */
@@ -1050,21 +1101,21 @@
         }
 
         .rsvp-section #coretan2 {
-            bottom: 35%;
+            bottom: 33%;
             left: 5%;
             animation-delay: 2s;
         }
 
         .section-title {
-            font-family: 'Sacramento', cursive;
-            font-size: 38px;
+            font-family: 'Cookie', cursive;
+            font-size: 35px;
             color: #db2777;
             text-align: center;
             margin-bottom: 5px;
         }
 
         .rsvp-prompt {
-            font-size: 11px;
+            font-size: 12px;
             color: #777;
             text-align: center;
             margin-bottom: 15px;
@@ -1308,7 +1359,7 @@
         }
 
         .footer #hati2 {
-            top: 15%;
+            top: 30%;
             right: 2%;
             animation-delay: 1s;
         }
@@ -1329,7 +1380,7 @@
         }
 
         .footer #coretan1 {
-            top: 5%;
+            top: 25%;
             right: -5%;
             animation-delay: 0s;
         }
@@ -1340,21 +1391,46 @@
             animation-delay: 2s;
         }
 
+        /* Animasi Fade In & TranslateY 20px pada Footer H2 */
         .footer h2 {
             font-size: 18px;
             color: #333;
             margin-bottom: 5px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
+        .footer h2.animate-footer-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animasi Footer Names (Heri & Eva terpisah, & tanpa animasi) */
         .footer .names {
-            font-family: 'Sacramento', cursive;
+            font-family: 'Cookie', cursive;
             font-size: 32px;
             color: #4a88b5;
             margin-bottom: 15px;
         }
 
+        .footer .names .footer-Heri,
+        .footer .names .footer-Eva {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .footer .names.animate-footer-names .footer-Heri,
+        .footer .names.animate-footer-names .footer-Eva {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .footer-credit {
-            font-size: 10px;
+            font-size: 12px;
+            font-weight: 600;
             color: #999;
         }
     </style>
@@ -1375,10 +1451,13 @@
             <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
             <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
 
-            <div class="cover-title" id="animatedTitle">THESE COUPLE ARE <br> GETTING MARRIED</div>
+            <div class="cover-title" id="animatedTitle">
+                <span class="these-couple">THESE COUPLE ARE</span>
+                <span class="getting-married">Getting Merried!</span>
+            </div>
             <div class="cover-date">01 . 11 . 2026</div>
             <img src="img/couple.png" alt="Couple Illustration" class="couple-illustration">
-            <div class="cover-names">pria & wanita</div>
+            <div class="cover-names">Eva & Heri</div>
             <button class="btn-open" onclick="openInvitation()">OPEN</button>
             <div class="line">
                 <img src="img/garis.jpg" alt="line Illustration">
@@ -1389,16 +1468,15 @@
             <!-- Content Section -->
             <div class="content">
                 <h2>the wedding of
-                <span class="pria">pria</span>
-                <span class="wanita">wanita</span>
+                <span class="Heri">Eva</span>
+                <span class="Eva">Heri</span>
                 </h2>
 
                 <div class="quote-box" id="quote-box">
-                    <p id="quote-text">Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                    <p id="quote-text">Dan di antara tanda-tanda kebesaran-Nya<br> ialah Dia menciptakan pasangan-pasangan<br> untukmu dari
                     jenismu
-                    sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa
-                    kasih
-                    dan sayang."</p> <br><strong id="quote-author">Qs. Ar-Rum: 21</strong>
+                    sendiri, agar kamu<br> cenderung dan merasa tenteram kepadanya,<br> dan Dia menjadikan di antaramu rasa
+                    kasih<br> dan sayang."</p> <br><strong id="quote-author">Qs. Ar-Rum: 21</strong>
                 </div>
 
                 <img src="img/hatipink.jpg" alt="Love Icon" id="hati1">
@@ -1431,26 +1509,27 @@
 
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan1">
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
-                
+
                 <div class="profile-card">
-                    <div class="photo-frame frame-pria">
-                        <img src="https://via.placeholder.com/130x150?text=pria" alt="pria">
+                    <div class="photo-frame frame-Eva">
+                        <img src="img/Eva.png" alt="Eva">
                     </div>
-                    <div class="person-name">pria</div>
-                    <div class="person-fullname">pria</div>
-                    <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
+                    <div class="person-name name-Eva">Eva</div>
+                    <div class="person-fullname">Eva Rosdiana Dewi</div>
+                    <div class="person-parents">Anak ke2 dari Bapak Hamzah dan Ibu Aminah</div>
                 </div>
 
                 <div class="ampersand">&</div>
-
+                
                 <div class="profile-card">
-                    <div class="photo-frame frame-wanita">
-                        <img src="https://via.placeholder.com/130x150?text=wanita" alt="wanita">
+                    <div class="photo-frame frame-Heri">
+                        <img src="img/Heri.png" alt="Heri">
                     </div>
-                    <div class="person-name name-wanita">wanita</div>
-                    <div class="person-fullname">wanita</div>
-                    <div class="person-parents">Anak ke- dari Bapak ... dan Ibu ...</div>
+                    <div class="person-name">Heri</div>
+                    <div class="person-fullname">Heri Gunawan </div>
+                    <div class="person-parents">Anak pertama dari Bapak Mahyuddin Syarif dan Ibu Siti Amisyah</div>
                 </div>
+
             </div>
 
             <div class="string-divider"><i class="fa-solid fa-heart"></i></div>
@@ -1483,9 +1562,8 @@
                     <h3>Akad Nikah</h3>
                     <div class="event-details">
                         Minggu, 1 November 2026<br>
-                        Pukul : 09.00 - 10.00 WIB<br>
-                        Tempat : Kediaman mempelai Wanita<br>
-                        Jl. Balikpapan - Handil II, segagu RT 05 gang servis
+                        Pukul : 08.30 - 10.00 WIB<br>
+                        Tempat : segagu RT 05 gang servis
                     </div>
                 </div>
 
@@ -1494,10 +1572,9 @@
                     <div class="event-details">
                         Minggu, 1 November 2026<br>
                         Pukul : 10.00 - 16.00 WIB<br>
-                        Tempat : Kediaman mempelai Wanita<br>
-                        Jl. Balikpapan - Handil II, segagu RT 05 gang servis
+                        Tempat : segagu RT 05 gang servis
                     </div>
-                    <a href="https://maps.google.com" target="_blank" class="btn-location">Lihat Lokasi Disini</a>
+                    <a href="https://maps.app.goo.gl/2gi5NQ15xbiUdsAR6" target="_blank" class="btn-location">Lihat Lokasi Disini</a>
                 </div>
 
                 <div class="countdown-box">
@@ -1521,17 +1598,17 @@
 
                 <div class="story-item">
                     <h4>Awal Pertama</h4>
-                    <p>...</p>
+                    <p>Sebuah pertemuan sederhana berawal dari sosial media menjadi awal dari cerita yang tak pernah kami sangka</p>
                 </div>
 
                 <div class="story-item">
                     <h4>Menjadi Kita</h4>
-                    <p>...</p>
+                    <p>Waktu membawa kami semakin dekat, hingga akhirnya kami menyadari bahwa mungkin, inilah cara Tuhan mempertemukan dua hati yang tepat.</p>
                 </div>
 
                 <div class="story-item">
                     <h4>Selamanya</h4>
-                    <p>...</p>
+                    <p>Dengan penuh syukur, kami memilih untuk melangkah bersama, menulis cerita baru dalam satu ikatan pernikahan.</p>
                 </div>
             </div>
 
@@ -1547,21 +1624,16 @@
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
 
                 <h2>Wedding Gift</h2>
-                <div class="gift-desc">
+                <div class="gift-desc" id="giftDesc">
                     Kehadiran dan doa restu dari orang-orang terkasih adalah hadiah terindah bagi kami. Dan jika ingin
                     memberikan tanda kasih, dapat melalui:
                 </div>
 
                 <div class="bank-card">
-                    <b>BCA</b><br>
-                    xxxxxxxxxx<br>
-                    a.n pria
-                </div>
-
-                <div class="bank-card">
-                    <b>Mandiri</b><br>
-                    xxxxxxxxxx<br>
-                    a.n wanita
+                    <b>BRI</b><br>
+                    <span id="rek1">447801012856535</span><br>
+                    a.n Eva Rosdiana Dewi<br>
+                    <button class="btn-copy" onclick="copyRekening('rek1', this)"><i class="fa-regular fa-copy"></i> Salin Rekening</button>
                 </div>
             </div>
 
@@ -1577,8 +1649,8 @@
                 <img src="img/coretan.jpg" alt="Coretan" id="coretan2">
 
                 <div class="container" style="max-width: 100%; box-shadow: none;">
-                    <h2 class="section-title">Kirim Ucapan & Doa</h2>
-                    <p class="rsvp-prompt">Drop your sweetest wishes for us</p>
+                    <h2 class="section-title">💌Kirim Ucapan & Doa</h2>
+                    <p class="rsvp-prompt">Drop your sweetest wishes for us😊❤️</p>
 
                     <form id="wishesForm" method="POST"
                         action="https://script.google.com/macros/s/AKfycbzZEXcdTIarEeoWIHf0pi0JboUlOaNDa4GjETGxMruNOumMiq0aVnbHhsxeXoBLhcmj/exec">
@@ -1631,7 +1703,7 @@
 
                 <h2>See You At Our Wedding Day!</h2>
                 <div style="font-size: 13px; color: #666; margin-bottom: 5px;">With Love</div>
-                <div class="names">pria & wanita</div>
+                <div class="names"><span class="footer-Heri">Heri</span> & <span class="footer-Eva">Eva</span></div>
                 <div class="footer-credit">Invitation by <br> <a href="https://www.instagram.com/bimatech_?stkn=MXVsYzI1bGlqeHQ3NQ==" target="_blank">BimaTech</a>
                 </div>
             </div>
@@ -1640,7 +1712,7 @@
     </div>
 
     <audio id="bgMusic" loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-cute.mp3" type="audio/mp3">
+        <source src="img/bgMusic5.mp3" type="audio/mp3">
     </audio>
 
     <script>
@@ -1650,23 +1722,25 @@
             if (!titleElement) return;
 
             let letterIndex = 0;
-            Array.from(titleElement.childNodes).forEach(node => {
-                if (node.nodeType !== Node.TEXT_NODE) return;
-
-                const fragment = document.createDocumentFragment();
-                for (const character of node.textContent) {
+            // Target hanya elemen span teks di dalam cover-title agar tidak merusak struktur HTML span class
+            const textSpans = titleElement.querySelectorAll('.these-couple, .getting-married');
+            
+            textSpans.forEach(spanEl => {
+                const textContent = spanEl.textContent;
+                spanEl.textContent = '';
+                
+                for (const character of textContent) {
                     if (/\s/.test(character)) {
-                        fragment.appendChild(document.createTextNode(character));
+                        spanEl.appendChild(document.createTextNode(character));
                         continue;
                     }
 
-                    const span = document.createElement("span");
-                    span.textContent = character;
-                    span.style.animationDelay = (letterIndex * 0.04) + "s";
+                    const charSpan = document.createElement("span");
+                    charSpan.textContent = character;
+                    charSpan.style.animationDelay = (letterIndex * 0.04) + "s";
                     letterIndex++;
-                    fragment.appendChild(span);
+                    spanEl.appendChild(charSpan);
                 }
-                node.replaceWith(fragment);
             });
         });
     </script>
@@ -1791,10 +1865,37 @@
         document.querySelectorAll('.story-item').forEach(storyItem => {
             storyItemObserver.observe(storyItem);
         });
+
+        const giftDesc = document.getElementById('giftDesc');
+        if (giftDesc) {
+            const giftObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    giftDesc.classList.add('animate-gift');
+                    observer.unobserve(giftDesc);
+                }
+            }, { threshold: 0.2 });
+            giftObserver.observe(giftDesc);
+        }
+
+        // Observer untuk animasi Footer (h2 & names)
+        const footerElement = document.querySelector('.footer');
+        if (footerElement) {
+            const footerObserver = new IntersectionObserver((entries, observer) => {
+                if (entries[0].isIntersecting) {
+                    const footerTitle = footerElement.querySelector('h2');
+                    const footerNames = footerElement.querySelector('.names');
+                    
+                    if (footerTitle) footerTitle.classList.add('animate-footer-title');
+                    if (footerNames) footerNames.classList.add('animate-footer-names');
+                    
+                    observer.unobserve(footerElement);
+                }
+            }, { threshold: 0.2 });
+            footerObserver.observe(footerElement);
+        }
     </script>
 
     <script>
-        // -- Unified Script untuk Cover, Musik, Countdown, dan RSVP --
         const bgMusic = document.getElementById('bgMusic');
         const playIcon = document.getElementById('playIcon');
         let isPlaying = false;
@@ -1807,10 +1908,8 @@
 
             revealQuoteAfterOpen();
 
-            // Kembalikan scroll body
             document.body.style.overflow = 'auto';
 
-            // Putar musik otomatis saat dibuka
             bgMusic.play().then(() => {
                 isPlaying = true;
                 playIcon.classList.remove('fa-play');
@@ -1821,7 +1920,7 @@
 
             setTimeout(function () {
                 cover.style.display = 'none';
-            }, 800);
+            }, 2000);
         }
 
         function toggleMusic() {
@@ -1838,7 +1937,24 @@
             }
         }
 
-        // Countdown Timer menuju 1 November 2026
+        function copyRekening(elementId, btnElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalHTML = btnElement.innerHTML;
+                btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Berhasil Disalin!';
+                btnElement.style.backgroundColor = '#93c5fd';
+                btnElement.style.color = '#1e3a8a';
+                
+                setTimeout(() => {
+                    btnElement.innerHTML = originalHTML;
+                    btnElement.style.backgroundColor = '#dbeafe';
+                    btnElement.style.color = '#4a88b5';
+                }, 2000);
+            }).catch(err => {
+                alert('Gagal menyalin nomor rekening.');
+            });
+        }
+
         const weddingDate = new Date("November 1, 2026 09:00:00").getTime();
 
         function updateCountdown() {
@@ -1865,7 +1981,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // -- Pagination & RSVP Variables --
         let allWishes = [];
         const wishesPerPage = 5;
         let currentPage = 1;
@@ -2015,7 +2130,7 @@
                         <span class="attendance-status ${statusClass}">${kehadiran}</span>
                         <span class="attendance-status">(${jumlahHadir} orang)</span>
                         <p style="margin-top: 5px; color: #555;">${wish.Ucapan || ''}</p>
-                        <span style="font-size: 10px; color: #999; display: block; margin-top: 5px;">${timestamp}</span>
+                        <span style="font-size: 10px; class="page-info" style="color: #999; display: block; margin-top: 5px;">${timestamp}</span>
                     </div>
                     ${stickerHtml}
                 `;
